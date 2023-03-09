@@ -1,12 +1,17 @@
-﻿namespace PermutationAndCountingAssignment
+﻿using System;
+using System.Reflection;
+using System.Text;
+
+namespace PermutationAndCountingAssignment
 {
     public class Program
     {
         //https://steemit.com/csharp/@simondev/c-generic-permutation-ordered-sub-sets-with-linq
         //ChatGPT
-
+        static int count = 0;
         static void Main(string[] args)
         {
+
             Program program = new Program();
             int[] arr1 = new int[5];
             Console.WriteLine("input of 5 characters/numbers/symbols displays the following:\n\n\n");
@@ -16,8 +21,6 @@
             string inputStr = Console.ReadLine();
             //Console.WriteLine(inputStr);
 
-            //int n = inputStr.Length;
-            //permute(inputStr, 0, n - 1);
 
             // Get all permutations of inputStr of length 1 to 5 and diplay them
             for (int i = 1; i <= 5; i++)
@@ -30,55 +33,53 @@
                 }
             }
             /////
-            program.TransitionText();
+            //program.TransitionText();
+            ///////
             /////
-            ///
 
-            List<List<string>> partitions = OrderedPartitions(inputStr);
-            Console.WriteLine("All ordered partitions of " + inputStr + ":");
-            foreach (List<string> partition in partitions)
-            {
-                Console.WriteLine(string.Join(" ", partition));
-            }
-            /////
+            //List<List<string>> partitions = OrderedPartitions(inputStr);
+            //Console.WriteLine("All ordered partitions of " + inputStr + ":");
+            //foreach (List<string> partition in partitions)
+            //{
+            //    Console.WriteLine(string.Join(" ", partition));
+            //}
+            ///////
             program.TransitionText();
-            /////
+            ///////
             char[] charArray = inputStr.ToCharArray();
+            //Array.Sort(charArray);
             Console.WriteLine("All combinations of 5C1, 5C2, 5C3, 5C4, 5C5:");
+            string output = "";
+            List<string> Combinations = new List<string>();
+
+            for (int i = 0;i <= 5; i++) //how many combinations we have
+            {
+                GenerateCombinations(inputStr, i, output);
+                Console.WriteLine($"Total number of combinations: {count}");
+            }
+
+           
 
 
-            for (int i = 1; i <= 5; i++)
-            {
-                int count = CountCombinations(inputStr.Length, i);
-                Console.WriteLine($"5C{i} ({count} combinations):");
-                PrintCombinations(inputStr.ToCharArray(), i);
-                Console.WriteLine();
-            }
+            //Console.WriteLine("Total count: " + CountCombinations(inputStr, ""));
+
         }
-        private static void permute(string str, int l, int r)
+        static void GenerateCombinations(string input, int length, string output)
         {
-            if (l == r)
-                Console.WriteLine(str);
-            else
+
+            if (length == 0)
             {
-                for (int i = l; i <= r; i++)
-                {
-                    str = swap(str, l, i);
-                    permute(str, l + 1, r);
-                    str = swap(str, l, i);
-                }
+                Console.WriteLine(output);
+                count++;
+                return;
             }
-        }
-        public static String swap(String a,
-                            int i, int j)
-        {
-            char temp;
-            char[] charArray = a.ToCharArray();
-            temp = charArray[i];
-            charArray[i] = charArray[j];
-            charArray[j] = temp;
-            string s = new string(charArray);
-            return s;
+
+            for (int i = 0; i < input.Length; i++)//number of ways to combine 
+            {
+                string newOutput = output + input[i];
+                string newInput = input.Substring(0, i) + input.Substring(i + 1);
+                GenerateCombinations(newInput, length - 1, newOutput);
+            }
         }
         public void TransitionText()
         {
@@ -86,6 +87,7 @@
             Console.ReadKey();
             Console.Clear();
         }
+        
         // recursive function 
         public int factorial(int num)
         {
@@ -115,7 +117,7 @@
                 for (int i = 0; i < str.Length; i++)
                 {
                     // Get all permutations of the remaining characters with length len-1
-                    List<string> subPermutations = GetPermutations(str.Remove(i, 1), len - 1);
+                    List<string> subPermutations = GetPermutations(str.Remove(i, 1), len - 1);// N!/(n-l)!
 
                     // Add the current character to the beginning of each sub-permutation to create new permutations
                     foreach (string subPerm in subPermutations)
@@ -153,25 +155,9 @@
         //Combination code starts here
         static int CountCombinations(int n, int r)
         {
-            if (n < r) return 0;
-            if (r == 0 || r == n) return 1;
+            if (n < r) return 0;    // no combination return 0
+            if (r == 0 || r == n) return 1; //one combination return 1
             return CountCombinations(n - 1, r - 1) + CountCombinations(n - 1, r);
-        }
-
-        static void PrintCombinations(char[] input, int k, string prefix = "")
-        {
-            if (k == 0)
-            {
-                Console.WriteLine(prefix);
-                return;
-            }
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                char[] newInput = new char[input.Length - i - 1];
-                Array.Copy(input, i + 1, newInput, 0, input.Length - i - 1);
-                PrintCombinations(newInput, k - 1, prefix + input[i]);
-            }
         }
     }
 }

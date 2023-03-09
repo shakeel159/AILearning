@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Workspace\\src\\AI\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj": {}
+    "C:\\Workspace\\src\\AI\\AILearning\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj": {}
   },
   "projects": {
-    "C:\\Workspace\\src\\AI\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj": {
+    "C:\\Workspace\\src\\AI\\AILearning\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Workspace\\src\\AI\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj",
+        "projectUniqueName": "C:\\Workspace\\src\\AI\\AILearning\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj",
         "projectName": "PermutationAndCountingAssignment",
-        "projectPath": "C:\\Workspace\\src\\AI\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj",
+        "projectPath": "C:\\Workspace\\src\\AI\\AILearning\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment.csproj",
         "packagesPath": "C:\\Users\\Jazib\\.nuget\\packages\\",
-        "outputPath": "C:\\Workspace\\src\\AI\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\obj\\",
+        "outputPath": "C:\\Workspace\\src\\AI\\AILearning\\PermutationAndCounting\\PermutationAndCountingAssignment\\PermutationAndCountingAssignment\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
