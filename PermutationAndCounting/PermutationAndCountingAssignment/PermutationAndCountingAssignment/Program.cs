@@ -8,6 +8,9 @@ namespace PermutationAndCountingAssignment
     {
         //https://steemit.com/csharp/@simondev/c-generic-permutation-ordered-sub-sets-with-linq
         //ChatGPT
+        //https://betterexplained.com/articles/easy-permutations-and-combinations/
+
+
         static int count = 0;
         static void Main(string[] args)
         {
@@ -50,9 +53,9 @@ namespace PermutationAndCountingAssignment
             //Array.Sort(charArray);
             Console.WriteLine("All combinations of 5C1, 5C2, 5C3, 5C4, 5C5:");
             string output = "";
-            List<string> Combinations = new List<string>();
 
-            for (int i = 0;i <= 5; i++) //how many combinations we have
+            //Get all combinations of length 1 to 5 and diplay them
+            for (int i = 0;i <= 5; i++) 
             {
                 GenerateCombinations(inputStr, i, output);
                 Console.WriteLine($"Total number of combinations: {count}");
@@ -64,23 +67,7 @@ namespace PermutationAndCountingAssignment
             //Console.WriteLine("Total count: " + CountCombinations(inputStr, ""));
 
         }
-        static void GenerateCombinations(string input, int length, string output)
-        {
-
-            if (length == 0)
-            {
-                Console.WriteLine(output);
-                count++;
-                return;
-            }
-
-            for (int i = 0; i < input.Length; i++)//number of ways to combine 
-            {
-                string newOutput = output + input[i];
-                string newInput = input.Substring(0, i) + input.Substring(i + 1);
-                GenerateCombinations(newInput, length - 1, newOutput);
-            }
-        }
+       
         public void TransitionText()
         {
             Console.WriteLine("\n\nPress Any Key for Next pattern");
@@ -113,10 +100,10 @@ namespace PermutationAndCountingAssignment
             }
             else
             {
-                // Loop through each character in str
+                // Loop through each char srtring
                 for (int i = 0; i < str.Length; i++)
                 {
-                    // Get all permutations of the remaining characters with length len-1
+                    // Get all permutations of the remaining characters char
                     List<string> subPermutations = GetPermutations(str.Remove(i, 1), len - 1);// N!/(n-l)!
 
                     // Add the current character to the beginning of each sub-permutation to create new permutations
@@ -153,11 +140,22 @@ namespace PermutationAndCountingAssignment
             return partitions;
         }
         //Combination code starts here
-        static int CountCombinations(int n, int r)
+        static void GenerateCombinations(string input, int length, string output)
         {
-            if (n < r) return 0;    // no combination return 0
-            if (r == 0 || r == n) return 1; //one combination return 1
-            return CountCombinations(n - 1, r - 1) + CountCombinations(n - 1, r);
+
+            if (length == 0)//if 0 we have 1 combination
+            {
+                Console.WriteLine(output);
+                count++;//number of combinations
+                return;
+            }
+
+            for (int i = 0; i < input.Length; i++)//number of ways to combine 
+            {
+                string newOutput = output + input[i];
+                string newInput = input.Substring(0, i) + input.Substring(i + 1);//get remienders 
+                GenerateCombinations(newInput, length - 1, newOutput);
+            }
         }
     }
 }
