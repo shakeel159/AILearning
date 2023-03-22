@@ -1,0 +1,85 @@
+Assignment Week8 PROLOG = SWISH
+
+Current Code:
+
+
+
+:- use_module(library(clpb)).
+
+me(Me).
+nephew(Nephew).
+son(Son).
+daughter(Daughter).
+mother(Mother).
+father(Father).
+parent(Mother, Father).
+grandMother(GrandMother).
+grandFather(GrandFather).
+greatGrandMother(GrandFather).
+greatGrandFather(GrandFather).
+twinSister(TwinSister).
+brother(Brother).
+
+isFamily(Nephew, ToMe).
+isFamily(Son, ToMe).
+isFamily(Daughter, ToMe).
+isFamily(Parent, ToMe).
+isMother(Mother, ToMe).
+isFather(Father, ToMe).
+isGrandMother(GrandMother, Father).
+isGrandFather(GrandFather, Father).
+isGreatMother(GreatGrandMother, GrandMother).
+isGreatFather(GreatGrandFather, GrandMother).
+areSiblings(TwinSister, ToMe).
+areSiblings(Brother, ToME).
+
+% Example 1:
+% 1- Who is a nephew
+%
+
+ isNephew(X, Y) :- isFamily(X,Y), nephew(X).
+
+
+% Example 2:
+% 1- Who is a son
+%
+
+ ison(X, Y) :- isFamily(X,Y), son(X).
+
+% Example 3:
+% 1- Who is a daughter
+%
+
+ isDaughter(X, Y) :- isFamily(X,Y), daughter(X).
+
+% Example 3:
+% 1- Who is a Parent
+%
+isPerent(X, Y) :- isMother(X,Y); isFather(X, Y).
+
+% Example 4:
+% 1- Who is a grandparent
+%
+isGrandPerents(X, Y) :- isGrandMother(X, Y); isGrandFather(X, Y).
+
+% Example 4:
+% 1- Who is a grandparent
+%
+
+isGreatGrandPerentsOfMother(X, Y) :- isGreatMother(x, Y); isGreatFather(X, Y).
+
+% Example 6:
+% 1- Who are siblings
+%
+isSiblings(x, y) :- areSiblings(X, Y); areSiblings(Brother, ToME).
+
+% Queries:
+% isNephew(Nephew, ToMe).
+% ison(Son, ToMe).
+% isDaughter(Duaghter, ToMe).
+% isPerent(Mother, ToMe). , isPerent(Father, ToMe).
+% isGrandPerents(GrandFather, Father). , isGrandPerents(GrandMother, Father).
+% isGreatGrandPerentsOfMother(GreatGrandMother, GrandMother). , 
+% isGreatGrandPerentsOfMother(GreatGrandFather, GrandMother).
+% isSiblings(TwinSister, ToMe). , isSiblings(Brother, ToMe).
+%
