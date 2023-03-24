@@ -5,8 +5,6 @@ using System.Windows.Forms;
 
 namespace VendingStates
 {
-    //BUGS:
-    //Vending mechine can go negative in currancy storage
 
     public partial class Form1 : Form
     {
@@ -19,7 +17,6 @@ namespace VendingStates
         Products product;
 
         List<string> ToDispense = new List<string>();
-        string[] Dispended;
 
         string gumName = "Gum";
         string GronolaName = "Gronola";
@@ -34,8 +31,8 @@ namespace VendingStates
         bool giveChange = false;
         public Form1()
         {
+            product = new Products();
             InitializeComponent();
-            state = VendingState.WaitingforPayment; // initial state
             SelectionBx.Text = "Vending Mechine Selection + ";
             FSMTxt.Text += state.ToString();
             gunPrice.Text = gumCost.ToString(); 
@@ -52,11 +49,13 @@ namespace VendingStates
             bank = 00.00f;
             quarter = 00.25f;
             moneyInWallet = 5.00f;
+            state = VendingState.WaitingforPayment; // initial state
             BankTxt.Text = "$" + bank.ToString();
             wallet.Text = "$" + moneyInWallet.ToString();
             WalletTxt.Text = "Your Money: ";
             VendsMoneyTxt.Text = "Money put in: ";
             OutPuttxt.Text = "OutPut: ";
+
         }
         private void UpdateVedningState()
         {
@@ -64,24 +63,33 @@ namespace VendingStates
             {
                 case VendingState.WaitingforPayment:
                     Payment();
-                    FSMTxt.Text += "WPP + ";
+                    FSMTxt.AppendText("WPP + ");
                     break;
                 case VendingState.WaitingForSelection:
-                    FSMTxt.Text += "WFS + ";
+                    FSMTxt.AppendText("WFS + ");
                     break;
-                case VendingState.Vending:  
-                    FSMTxt.Text += "vending + ";
+                case VendingState.Vending:
+                    FSMTxt.AppendText("vending + ");
                     break;
             }
         }
         private void Payment()
         {
-            moneyInWallet -= quarter;
-            bank += quarter;
-            BankTxt.Text = "$" + bank.ToString();
-            wallet.Text = "$" + moneyInWallet.ToString();
+            if (moneyInWallet <= .25f)
+            {
+                BankTxt.Text = "$" + bank.ToString();
+                wallet.Text = "$" + moneyInWallet.ToString();
+            }      
+            else
+            {
+                moneyInWallet -= quarter;
+                bank += quarter;
+                BankTxt.Text = "$" + bank.ToString();
+                wallet.Text = "$" + moneyInWallet.ToString();
+            }
+            
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // add money to bank button
         {
             UpdateVedningState();
         }
@@ -97,7 +105,6 @@ namespace VendingStates
             product.name = gumName;
             bank -= gumCost;
             ToDispense.Add(product.name.ToString());
-            //state = VendingState.WaitingForSelection;
             Selection();
             UpdateVedningState(); 
         }
@@ -108,7 +115,6 @@ namespace VendingStates
             product.name = GronolaName;
             bank -= gronolaCost;
             ToDispense.Add(product.name.ToString());
-            //state = VendingState.WaitingForSelection;
             Selection();
             UpdateVedningState();
         }
@@ -134,9 +140,8 @@ namespace VendingStates
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e) //SELECT BUTTON
         {
-            //SELECT BUTTON
             CheckState();
             Transaction();
         }
@@ -163,44 +168,33 @@ namespace VendingStates
         }
         private void CLBtn_Click(object sender, EventArgs e)
         {
-            if(ToDispense.Count == 0)
+            if (ToDispense.Count == 0)
             {
                 resetpayment();
             }
-            foreach (var item in ToDispense)
+            else
             {
-                if(item.ToString() == gumName)
+                foreach (var item in ToDispense)
                 {
-                    bank += gumCost;
+                    if (item.ToString() == gumName)
+                    {
+                        bank += gumCost;
+                    }
+                    if (item.ToString() == GronolaName)
+                    {
+                        bank += gronolaCost;
+                    }
+                    ToDispense.Remove(item);
+                    resetpayment();
+                    return;
                 }
-                if (item.ToString() == GronolaName)
-                {
-                    bank += gronolaCost;
-                }
-                change = bank;
-                moneyInWallet += change;
-                ToDispense.Remove(item);
-                wallet.Text = "$" + moneyInWallet.ToString();
-                ClearBanktext();
-                FSMTxt.Text.Clone();    
-                Form1 form = new Form1();
-                return;
+
             }
         }
 
-        //Singleton Class
-        public class Products
+        private void FSMTxt_TextChanged(object sender, EventArgs e)
         {
-            public string name;
-            private static Products instance = new Products();
-            private Products() { }
 
-            public static Products GetInstance
-            {
-                get { return instance; }
-            }
         }
-
-
     }
 }

@@ -9,3 +9,14 @@ C:\Workspace\src\AI\VendingStates\VendingStates\obj\Debug\VendingStates.csproj.G
 C:\Workspace\src\AI\VendingStates\VendingStates\obj\Debug\VendingStates.csproj.CoreCompileInputs.cache
 C:\Workspace\src\AI\VendingStates\VendingStates\obj\Debug\VendingStates.exe
 C:\Workspace\src\AI\VendingStates\VendingStates\obj\Debug\VendingStates.pdb
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\bin\Debug\VendingStates.exe.config
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\bin\Debug\VendingStates.exe
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\bin\Debug\VendingStates.pdb
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.csproj.AssemblyReference.cache
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.csproj.SuggestedBindingRedirects.cache
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.Form1.resources
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.Properties.Resources.resources
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.csproj.GenerateResource.cache
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.csproj.CoreCompileInputs.cache
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.exe
+C:\Workspace\src\AI\AILearning\VendingStates\VendingStates\obj\Debug\VendingStates.pdb
