@@ -1,0 +1,40 @@
+:- use_module(library(clpb)).
+
+son(Me, Son).
+duaghter(Me, Daughter).
+cousin(Cousin, Nephew).
+cousin(Cousin, Niece).
+perent(Father, Me).
+parent(Mother, Me).
+
+% Example 1:
+% 1- Who is a nephew
+%
+
+isNephew(Y) :- cousin(Z, Y).
+
+
+% Example 2:
+% 1- Who is a son
+%
+
+ ison(Y) :- son(Z,Y).
+
+% Example 3:
+% 1- Who is a daughter
+%
+
+ idaughter(Y) :- duaghter(Z,Y).
+
+% Example 4:
+% 1- Who is a Parent
+%
+%
+%father and mother are perents if mother and father is parent of me
+isPerent(X, Y) :- perent(X,Z), perent(Y, W).
+
+% Queries:
+% % isNephew(Nephew).
+% ison(Son).
+% idaughter(Daughter).
+% isPerent(Mother, Father)
