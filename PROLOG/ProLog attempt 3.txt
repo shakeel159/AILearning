@@ -1,10 +1,10 @@
 :- use_module(library(clpb)).
 
 
-parent(Great-Grandmother, Grandmother).
-parent(Great-Granfather, Granmother).
-parent(Great-Grandmother, Grandfather).
-parent(Great-Granfather, Grandfather).
+parent(GreatGrandmother, Grandmother).
+parent(GreatGranfather, Granmother).
+parent(GreatGrandmother, Grandfather).
+parent(GreatGranfather, Grandfather).
 
 parent(Grandmother, Father).
 parent(Grandmother, Uncle).
@@ -40,7 +40,7 @@ parent(Husband, Daighter).
 % is Nephew if perent is a cousin or cousinsWife
 % isNephew(Nephew) :- parent(CousinOne, Nephew), parent(CousinWife, Nephew)
 
-isNephew(Y) :- parent(X, Nephew), parent(Z, Nephew).
+isNephew(Nephew) :- parent(X, Nephew), parent(Z, Nephew).
 
 % Example 2:
 % 1- Who is a son
