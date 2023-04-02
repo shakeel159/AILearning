@@ -4,8 +4,10 @@ son(Me, Son).
 duaghter(Me, Daughter).
 cousin(Cousin, Nephew).
 cousin(Cousin, Niece).
-perent(Father, Me).
-parent(Mother, Me).
+isperent(Father, Me).
+isperent(Mother, Me).
+
+
 
 % Example 1:
 % 1- Who is a nephew
@@ -30,11 +32,12 @@ isNephew(Y) :- cousin(Z, Y).
 % 1- Who is a Parent
 %
 %
+
 %father and mother are perents if mother and father is parent of me
-isPerent(X, Y) :- perent(X,Z), perent(Y, W).
+myPerents(X, Y) :- isperent(X,Z), isperent(Y, Z).
 
 % Queries:
 % % isNephew(Nephew).
 % ison(Son).
 % idaughter(Daughter).
-% isPerent(Mother, Father)
+% myPerents(Mother, Father)

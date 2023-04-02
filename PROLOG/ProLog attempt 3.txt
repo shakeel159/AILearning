@@ -1,0 +1,80 @@
+:- use_module(library(clpb)).
+
+
+parent(Great-Grandmother, Grandmother).
+parent(Great-Granfather, Granmother).
+parent(Great-Grandmother, Grandfather).
+parent(Great-Granfather, Grandfather).
+
+parent(Grandmother, Father).
+parent(Grandmother, Uncle).
+parent(Grandmother, Aunt).
+parent(Grandfather, Father).
+parent(Grandfather, Uncle).
+parent(Grandfather, Aunt).
+
+parent(Mother, Brother).
+parent(Father, Brother).
+parent(Mother, Twinsister).
+parent(Father, Twinsister).
+parent(Mother, Me).
+parent(Father, Me).
+parent(Aunt, CousinOne).
+parent(Uncle, CousinOne).
+parent(Aunt, CousinTwo).
+parent(Uncle, CousinTwo).
+
+parent(CousinOne, Nephew).
+parent(CousinOne, Niece).
+parent(CousinWife, Nephew).
+parent(CousinWife, Niece).
+parent(Me, Son).
+parent(Husband, Son).
+parent(Me, Daughter).
+parent(Husband, Daighter).
+
+% Example 1:
+% 1- Who is a nephew
+%
+
+% is Nephew if perent is a cousin or cousinsWife
+% isNephew(Nephew) :- parent(CousinOne, Nephew), parent(CousinWife, Nephew)
+
+isNephew(Y) :- parent(X, Nephew), parent(Z, Nephew).
+
+% Example 2:
+% 1- Who is a son
+%
+% is Son if perents of Son
+
+isSon(Son) :- parent(X, Son).
+
+% Example 3:
+% 1- Who is a daughter
+%
+
+isDuaghter(Daighter) :- parent(X, Daighter).
+
+% Example 4:
+% 1- Who is a Parent
+%
+% is parent if has children
+
+parent(X) :- parent(X,Y).
+
+% Example 5:
+% 1- Who is a grandparent
+%
+% is granperent if parents of my Father
+
+% isGranPerent(grandmother, grandfather) :- parent(granmother, Father), parent(granfather, Father) 
+
+isGranParents(X, Y) :- parent(X, Father); parent(Y, Father).
+
+% Queries:
+% isNephew(Nephew).
+% isSon(Son).
+% isDaughter(Duaghter).
+% parent(X). 
+% isGranParents(Grandmother, Grandfather).
+
