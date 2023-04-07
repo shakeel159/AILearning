@@ -1,59 +1,90 @@
 :- use_module(library(clpb)).
 
+% Great Grand Paretns are Gen A
+parent(A1F, B1F).
+parent(A1M, B1F).
+parent(A2F, B2M).
+parent(A2M, B2M).
 
-parent(GreatGrandmother, Grandmother).
-parent(GreatGranfather, Granmother).
-parent(GreatGrandmother, Grandfather).
-parent(GreatGranfather, Grandfather).
+% Grand Paretns are Gen B
+parent(B1F, C1M).
+parent(B1F, C2M).
+parent(B1F, C3F).
+parent(B2M, C1M).
+parent(B2M, C2M).
+parent(B2M, C3F).
 
-parent(Grandmother, Father).
-parent(Grandmother, Uncle).
-parent(Grandmother, Aunt).
-parent(Grandfather, Father).
-parent(Grandfather, Uncle).
-parent(Grandfather, Aunt).
+% Paretns are Gen C
+parent(C1F, D1M).
+parent(C1F, D2F).
+parent(C1F, D3F).
+parent(C1M, D1M).
+parent(C1M, D2F).
+parent(C1M, D3F).
+parent(C3F, D4M).
+parent(C3M, D4M).
+parent(C3F, D5F).
+parent(C3M, D5F).
 
-parent(Mother, Brother).
-parent(Father, Brother).
-parent(Mother, Twinsister).
-parent(Father, Twinsister).
-parent(Mother, Me).
-parent(Father, Me).
-parent(Aunt, CousinOne).
-parent(Uncle, CousinOne).
-parent(Aunt, CousinTwo).
-parent(Uncle, CousinTwo).
+% My gen is D
+% Next gen is E
+parent(D3F, E1F).
+parent(D3F, E2M).
+parent(D3M, E1F).
+parent(D3M, E2M).
+parent(D4F, E3F).
+parent(D4F, E4M).
+parent(D4M, E3F).
+parent(D4M, E4M).
 
-parent(CousinOne, Nephew).
-parent(CousinOne, Niece).
-parent(CousinWife, Nephew).
-parent(CousinWife, Niece).
-parent(Me, Son).
-parent(Husband, Son).
-parent(Me, Daughter).
-parent(Husband, Daighter).
+
+male(A1M).
+male(A2M).
+male(B2M).
+male(C1M).
+male(C2M).
+male(C3M).
+male(D1M).
+male(D3M).
+male(D4M).
+male(E2M).
+male(E4M).
+
+female(A1F).
+female(A2F).
+female(B1F).
+female(C1F).
+female(C3F).
+female(D3F).
+female(D4F).
+female(D5F).
+female(D4M).
+female(E1F).
+female(E3F).
+
+
 
 % Example 1:
 % 1- Who is a nephew
 %
 
-% is Nephew if perent is a cousin or cousinsWife
-% isNephew(Nephew) :- parent(CousinOne, Nephew), parent(CousinWife, Nephew)
-
-isNephew(Nephew) :- parent(X, Nephew), parent(Z, Nephew).
+% isNephew(Nephew, Uncle/Aunt) :- sibling(Parent,Aunt_uncle),son(Nephew,Parent).//GOT ONLINE
+% isNephew(Nephew, Uncle/Aunt)  :- nephew son of parents of parents  //MY METHOD
+ 
+isNephew(X, Y) :- parent(Y, Z); son(Z, Y), male(X), X\==Y.
 
 % Example 2:
 % 1- Who is a son
 %
-% is Son if perents of Son
+% is Son if has parents and is male
 
-isSon(Son) :- parent(X, Son).
+isSon(X, Y) :- parent(Y, X), male(X), X\==Y.
 
 % Example 3:
 % 1- Who is a daughter
 %
 
-isDuaghter(Daighter) :- parent(X, Daighter).
+isDuaghter(X, Y) :- parent(Y, X), female(X), X\==Y.
 
 % Example 4:
 % 1- Who is a Parent
@@ -65,16 +96,42 @@ parent(X) :- parent(X,Y).
 % Example 5:
 % 1- Who is a grandparent
 %
-% is granperent if parents of my Father
+% is granperent if children of grandparent have children
 
-% isGranPerent(grandmother, grandfather) :- parent(granmother, Father), parent(granfather, Father) 
+isGranParents(X, Y) :- parent(Z, Y), X\==Y.
 
-isGranParents(X, Y) :- parent(X, Father); parent(Y, Father).
+% Example 6:
+% 1- Who is a great grand parent
+%
+% is greatGrandParents if parents of grandParents
+
+areGrandParents(X, Y) :- isGranParents(X, Z), isGranParents(Y, Z), X\==Y.
+
+isGreatGrandParent(X) :- areGrandParents(Z, Y), parent(X, Z); parent(X, Y).
+
+% Example 7:
+% 1- Who is either an Aunt or an uncle
+%
+% if is brother or sister of parent
+
+isAunt(X, Y) :- siibling(X, Z), parent(Z, Y), female(X).
+isUncle(X, Y) :- siibling(X, Z), parent(Z, Y), male(X).
+
+% Example 7:
+% 1- Who is either an Aunt or an uncle
+%
+% if same parants then siblings
+
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
 
 % Queries:
-% isNephew(Nephew).
-% isSon(Son).
-% isDaughter(Duaghter).
-% parent(X). 
-% isGranParents(Grandmother, Grandfather).
+% isNephew(E4M, C3M).
+% isSon(E2M, D3f).
+% isDaughter(E1F, D3M).
+% parent(C1). 
+% isGranParents(B1F, D3F).
+% isGreatGrandParent(A1F)
+% isAunt(C3F, D3F).
+% isUncle(C3M, D3F).
+% siblings(D3f, D1M).
 
