@@ -1,0 +1,13 @@
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\bin\Debug\netcoreapp2.2\simple-neural-network.deps.json
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\bin\Debug\netcoreapp2.2\simple-neural-network.runtimeconfig.json
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\bin\Debug\netcoreapp2.2\simple-neural-network.runtimeconfig.dev.json
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\bin\Debug\netcoreapp2.2\simple-neural-network.dll
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\bin\Debug\netcoreapp2.2\simple-neural-network.pdb
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.csproj.AssemblyReference.cache
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.AssemblyInfoInputs.cache
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.AssemblyInfo.cs
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.csproj.CoreCompileInputs.cache
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.dll
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.pdb
+C:\Workspace\src\AI\AILearning\ANN_Maze_Runner\simple-neural-network\obj\Debug\netcoreapp2.2\simple-neural-network.genruntimeconfig.cache
